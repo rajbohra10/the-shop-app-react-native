@@ -10,12 +10,14 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import productReducer from "./store/reducer/products";
 import cartReducer from "./store/reducer/cart";
 import orderReducer from "./store/reducer/orders";
-import ShopNavigator from "./navigations/ShopNavigator";
+import authReducers from "./store/reducer/auth";
+import NavigationContainer from "./navigations/NavigationContainer";
 
 const rootReducer = combineReducers({
   products: productReducer,
   cart: cartReducer,
-  orders: orderReducer
+  orders: orderReducer,
+  auth: authReducers
 });
 
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
@@ -41,7 +43,7 @@ export default function App() {
   }
   return (
     <Provider store={store}>
-      <ShopNavigator />
+      <NavigationContainer />
     </Provider>
   );
 }
